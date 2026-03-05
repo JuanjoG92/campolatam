@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Publicar Campo - Merrali</title>
+  <link rel="stylesheet" href="/css/app.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body class="inner-page">
+  <nav class="nav nav-solid"><div class="nav-container">
+    <a href="/" class="nav-logo"><i class="fas fa-seedling"></i> Merrali</a>
+    <div class="nav-links"><a href="/dashboard" data-i18n="nav_dashboard">Mi Panel</a></div>
+  </div></nav>
+
+  <div class="container form-page">
+    <div class="form-header">
+      <h1><i class="fas fa-tractor"></i> <span data-i18n="new_title">Publicar mi Campo</span></h1>
+      <p data-i18n="new_sub">Completá todos los datos. Tu campo será verificado por 5 escribanos antes de publicarse.</p>
+    </div>
+
+    <form id="newListingForm" enctype="multipart/form-data">
+      <!-- Datos básicos -->
+      <div class="form-card">
+        <h3 data-i18n="sec_basic">Datos Básicos</h3>
+        <div class="form-group"><label data-i18n="lbl_title">Título del anuncio *</label><input type="text" name="title" required placeholder="Ej: Estancia 500 há con río - Córdoba"></div>
+        <div class="form-row">
+          <div class="form-group"><label data-i18n="lbl_type">Tipo *</label>
+            <select name="transaction_type" required>
+              <option value="sale" data-i18n="type_sale">Venta</option>
+              <option value="rent" data-i18n="type_rent">Alquiler</option>
+            </select>
+          </div>
+          <div class="form-group"><label data-i18n="lbl_country">País *</label>
+            <select name="country" id="nlCountry" required onchange="loadProvinces(this.value,'nlProvince')">
+              <option value="" data-i18n="select_country">Seleccionar país</option>
+            </select>
+          </div>
+          <div class="form-group"><label data-i18n="lbl_province">Provincia / Estado *</label>
+            <select name="province" id="nlProvince" required><option value="">Seleccionar...</option></select>
+          </div>
+          <div class="form-group"><label data-i18n="lbl_city">Ciudad / Localidad</label><input type="text" name="city" placeholder="Ej: Río Cuarto"></div>
+        </div>
+      </div>
+
+      <!-- Dimensiones y Precio -->
+      <div class="form-card">
+        <h3 data-i18n="sec_price">Dimensiones y Precio</h3>
+        <div class="form-row">
+          <div class="form-group"><label data-i18n="lbl_hectares">Hectáreas totales *</label><input type="number" name="hectares" required min="0" step="0.1" placeholder="500"></div>
+          <div class="form-group"><label data-i18n="lbl_pph">Precio por hectárea (USD)</label><input type="number" name="price_per_hectare" min="0" placeholder="1500"></div>
+          <div class="form-group"><label data-i18n="lbl_total">Precio total (USD) *</label><input type="number" name="total_price" required min="0" placeholder="750000"></div>
+        </div>
+      </div>
+
+      <!-- Características -->
+      <div class="form-card">
+        <h3 data-i18n="sec_features">Características del Campo</h3>
+        <div class="form-row">
+          <div class="form-group"><label data-i18n="lbl_wells">Cantidad de pozos</label><input type="number" name="num_wells" min="0" placeholder="2"></div>
+          <div class="form-group"><label data-i18n="lbl_houses">Casas principales</label><input type="number" name="num_houses" min="0" placeholder="1"></div>
+          <div class="form-group"><label data-i18n="lbl_worker_houses">Casas de trabajadores</label><input type="number" name="num_worker_houses" min="0" placeholder="3"></div>
+          <div class="form-group"><label data-i18n="lbl_grass">Tipo de hierba / pasto</label><input type="text" name="grass_type" placeholder="Ej: Pasto llorón"></div>
+        </div>
+        <div class="form-row">
+          <div class="form-group"><label data-i18n="lbl_forest_pct">% Bosque / Monte</label><input type="number" name="forest_percent" min="0" max="100" placeholder="20"></div>
+          <div class="form-group"><label data-i18n="lbl_agri_pct">% Agrícola mixta</label><input type="number" name="mixed_agri_percent" min="0" max="100" placeholder="60"></div>
+          <div class="form-group"><label data-i18n="lbl_rain">Pluviación anual (mm)</label><input type="text" name="annual_rainfall" placeholder="Ej: 600-800 mm"></div>
+        </div>
+        <div class="checkboxes-row">
+          <label class="check-label"><input type="checkbox" name="has_river" value="1"> <i class="fas fa-water"></i> <span data-i18n="feat_river">Río</span></label>
+          <label class="check-label"><input type="checkbox" name="has_bushes" value="1"> <i class="fas fa-leaf"></i> <span data-i18n="feat_bushes">Arbustos</span></label>
+          <label class="check-label"><input type="checkbox" name="has_forest" value="1"> <i class="fas fa-tree"></i> <span data-i18n="feat_forest">Bosque / Monte</span></label>
+          <label class="check-label"><input type="checkbox" name="has_perimeter_fence" value="1"> <i class="fas fa-border-all"></i> <span data-i18n="feat_fence">Valla perimetral</span></label>
+        </div>
+      </div>
+
+      <!-- Producción -->
+      <div class="form-card">
+        <h3 data-i18n="sec_agri">Producción y Cultivos</h3>
+        <div class="form-group"><label data-i18n="lbl_agri">Tipos de agricultura (separá con comas)</label><input type="text" name="agriculture_types" placeholder="Ganadería, Soja, Maíz"></div>
+        <div class="form-group"><label data-i18n="lbl_products">Productos principales</label><input type="text" name="products" placeholder="Carne vacuna, Trigo"></div>
+        <div class="form-group"><label data-i18n="lbl_fruits">Árboles frutales</label><input type="text" name="fruit_trees" placeholder="Naranjo, Manzano, Duraznero"></div>
+      </div>
+
+      <!-- Descripción -->
+      <div class="form-card">
+        <h3 data-i18n="sec_desc">Descripción Detallada</h3>
+        <div class="form-group"><textarea name="description" rows="6" placeholder="Describí el campo en detalle: accesos, infraestructura, historia, oportunidades..."></textarea></div>
+        <div class="form-group"><label data-i18n="lbl_video">URL de Video (YouTube, opcional)</label><input type="url" name="video_url" placeholder="https://youtube.com/watch?v=..."></div>
+      </div>
+
+      <!-- Fotos y Videos -->
+      <div class="form-card">
+        <h3 data-i18n="sec_media">Fotos y Videos <small data-i18n="sec_media_sub">(mínimo 5 fotos, máximo 15 archivos)</small></h3>
+        <div class="upload-area" id="uploadArea" onclick="document.getElementById('mediaInput').click()">
+          <i class="fas fa-cloud-upload-alt"></i>
+          <p data-i18n="upload_hint">Hacé clic para subir fotos y videos del campo</p>
+          <span data-i18n="upload_formats">JPG, PNG, MP4 - Máx 50MB por archivo</span>
+        </div>
+        <input type="file" id="mediaInput" name="media" multiple accept="image/*,video/mp4" style="display:none" onchange="previewMedia(this)">
+        <div class="media-preview" id="mediaPreview"></div>
+      </div>
+
+      <div id="formError" class="error-msg" style="display:none"></div>
+      <div id="formSuccess" class="success-msg" style="display:none"></div>
+      <button type="submit" class="btn btn-primary btn-lg" id="submitBtn">
+        <i class="fas fa-upload"></i> <span data-i18n="btn_publish">Publicar Campo</span>
+      </button>
+    </form>
+  </div>
+
+  <script src="/js/app.js"></script>
+  <script src="/js/new-listing.js"></script>
+</body>
+</html>

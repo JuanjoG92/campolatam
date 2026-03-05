@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="es" data-lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CampoLatam - Campos y Granjas de Sudamérica</title>
+  <link rel="stylesheet" href="/css/app.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:wght@700;800&display=swap" rel="stylesheet">
+</head>
+<body class="landing">
+
+  <!-- Nav -->
+  <nav class="nav" id="mainNav">
+    <div class="nav-container">
+      <a href="/" class="nav-logo">
+        <i class="fas fa-seedling"></i>
+        <span>Merrali <span class="logo-sub">Campo Latam</span></span>
+      </a>
+      <div class="nav-links" id="navLinks">
+        <a href="/search" data-i18n="nav_search">Buscar Campos</a>
+        <a href="#how" data-i18n="nav_how">Cómo funciona</a>
+        <a href="/register?role=seller" class="btn btn-outline btn-sm" data-i18n="nav_publish">Publicar Campo</a>
+        <a href="/login" class="btn btn-primary btn-sm" data-i18n="nav_login">Ingresar</a>
+        <div class="lang-selector">
+          <button class="lang-btn" onclick="toggleLangMenu()"><i class="fas fa-globe"></i> <span id="currentLang">ES</span></button>
+          <div class="lang-menu" id="langMenu">
+            <a onclick="setLang('es')">🇦🇷 Español</a>
+            <a onclick="setLang('en')">🇺🇸 English</a>
+            <a onclick="setLang('pt')">🇧🇷 Português</a>
+            <a onclick="setLang('fr')">🇫🇷 Français</a>
+            <a onclick="setLang('it')">🇮🇹 Italiano</a>
+            <a onclick="setLang('de')">🇩🇪 Deutsch</a>
+            <a onclick="setLang('nl')">🇳🇱 Nederlands</a>
+            <a onclick="setLang('ru')">🇷🇺 Русский</a>
+          </div>
+        </div>
+      </div>
+      <button class="nav-toggle" onclick="document.getElementById('navLinks').classList.toggle('open')">
+        <i class="fas fa-bars"></i>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Hero Video Section -->
+  <section class="hero-video" id="hero">
+    <div class="video-overlay"></div>
+    <div class="hero-video-bg">
+      <iframe id="heroIframe" src="https://www.youtube.com/embed/VIDEO_ID?autoplay=1&mute=1&loop=1&controls=0&showinfo=0&rel=0&iv_load_policy=3&playlist=VIDEO_ID" frameborder="0" allow="autoplay" allowfullscreen></iframe>
+      <div class="hero-fallback-img" id="heroFallback" style="display:none"></div>
+    </div>
+    <div class="hero-content container">
+      <div class="hero-badge"><i class="fas fa-shield-alt"></i> <span data-i18n="hero_badge">Verificado por escribanos certificados</span></div>
+      <h1 class="hero-title">
+        <span data-i18n="hero_title1">Campos y Granjas</span><br>
+        <span class="hero-title-em" data-i18n="hero_title2">de Sudamérica</span>
+      </h1>
+      <p class="hero-sub" data-i18n="hero_sub">La plataforma donde vendedores y compradores honestos de campos de Sudamérica se encuentran. Verificación independiente por 5 escribanos.</p>
+      <div class="hero-actions">
+        <a href="/search" class="btn btn-primary btn-lg"><i class="fas fa-search"></i> <span data-i18n="hero_cta1">Ver Propiedades</span></a>
+        <a href="/register?role=seller" class="btn btn-white btn-lg"><i class="fas fa-plus"></i> <span data-i18n="hero_cta2">Publicar mi Campo</span></a>
+      </div>
+      <div class="hero-stats" id="heroStats">
+        <div class="hstat"><span class="hstat-n" id="statTotal">0</span><span class="hstat-l" data-i18n="stat_props">Propiedades</span></div>
+        <div class="hstat"><span class="hstat-n" id="statCountries">12</span><span class="hstat-l" data-i18n="stat_countries">Países</span></div>
+        <div class="hstat"><span class="hstat-n">5</span><span class="hstat-l" data-i18n="stat_verify">Verificaciones</span></div>
+        <div class="hstat"><span class="hstat-n">8</span><span class="hstat-l" data-i18n="stat_langs">Idiomas</span></div>
+      </div>
+    </div>
+    <div class="scroll-indicator"><i class="fas fa-chevron-down"></i></div>
+  </section>
+
+  <!-- Quick Search -->
+  <section class="quick-search">
+    <div class="container">
+      <div class="qs-card">
+        <h3 data-i18n="qs_title">Buscar Campos</h3>
+        <form class="qs-form" onsubmit="doQuickSearch(event)">
+          <div class="qs-fields">
+            <select id="qsCountry" onchange="loadProvinces(this.value, 'qsProvince')">
+              <option value="" data-i18n="qs_country">País</option>
+            </select>
+            <select id="qsProvince"><option value="" data-i18n="qs_province">Provincia</option></select>
+            <select id="qsType">
+              <option value="" data-i18n="qs_type">Tipo</option>
+              <option value="sale" data-i18n="type_sale">Venta</option>
+              <option value="rent" data-i18n="type_rent">Alquiler</option>
+            </select>
+            <input type="number" id="qsMinHa" placeholder="Mín. Há" min="0">
+            <input type="number" id="qsMaxHa" placeholder="Máx. Há" min="0">
+            <button type="submit" class="btn btn-primary"><i class="fas fa-search"></i> <span data-i18n="btn_search">Buscar</span></button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- Recent Listings -->
+  <section class="section-listings" id="recent">
+    <div class="container">
+      <div class="section-header">
+        <h2 data-i18n="recent_title">Propiedades Recientes</h2>
+        <a href="/search" class="btn btn-outline" data-i18n="see_all">Ver todas</a>
+      </div>
+      <div class="listings-grid" id="recentGrid">
+        <div class="loading-spinner"><i class="fas fa-spinner fa-spin"></i></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- How it works -->
+  <section class="how-section" id="how">
+    <div class="container">
+      <h2 class="section-title" data-i18n="how_title">¿Cómo funciona?</h2>
+      <div class="how-grid">
+        <div class="how-card seller">
+          <h3><i class="fas fa-tractor"></i> <span data-i18n="how_seller">Vendedor / Propietario</span></h3>
+          <ol>
+            <li data-i18n="how_s1">Registrate como vendedor</li>
+            <li data-i18n="how_s2">Cargá tu campo con 10+ fotos y video</li>
+            <li data-i18n="how_s3">Completá todos los detalles técnicos</li>
+            <li data-i18n="how_s4">5 escribanos verifican independientemente</li>
+            <li data-i18n="how_s5">Tu propiedad queda activa y visible</li>
+            <li data-i18n="how_s6">Recibí consultas de compradores</li>
+          </ol>
+          <a href="/register?role=seller" class="btn btn-primary btn-sm" data-i18n="btn_sell">Publicar Campo</a>
+        </div>
+        <div class="how-card notary">
+          <h3><i class="fas fa-stamp"></i> <span data-i18n="how_notary">Escribano / Notario</span></h3>
+          <ol>
+            <li data-i18n="how_n1">Registrate como escribano</li>
+            <li data-i18n="how_n2">Revisá las propiedades de tu zona</li>
+            <li data-i18n="how_n3">Verificá el título, impuestos y legales</li>
+            <li data-i18n="how_n4">Firmá la verificación con tus notas</li>
+            <li data-i18n="how_n5">Con 5 firmas, la propiedad se activa</li>
+          </ol>
+          <a href="/register?role=notary" class="btn btn-outline btn-sm" data-i18n="btn_notary">Registrarme como Escribano</a>
+        </div>
+        <div class="how-card buyer">
+          <h3><i class="fas fa-home"></i> <span data-i18n="how_buyer">Comprador / Inversor</span></h3>
+          <ol>
+            <li data-i18n="how_b1">Explorá listados verificados</li>
+            <li data-i18n="how_b2">Filtrá por país, provincia, hectáreas</li>
+            <li data-i18n="how_b3">Ver fotos, videos y datos técnicos</li>
+            <li data-i18n="how_b4">Consultá directamente al vendedor</li>
+            <li data-i18n="how_b5">Te sugerimos 5 abogados locales</li>
+            <li data-i18n="how_b6">Cerrá el trato con seguridad</li>
+          </ol>
+          <a href="/search" class="btn btn-primary btn-sm" data-i18n="btn_buy">Buscar Campos</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Countries -->
+  <section class="countries-section">
+    <div class="container">
+      <h2 class="section-title" data-i18n="countries_title">Disponible en toda Sudamérica</h2>
+      <div class="countries-grid" id="countriesGrid"></div>
+    </div>
+  </section>
+
+  <!-- Trust Section -->
+  <section class="trust-section">
+    <div class="container">
+      <div class="trust-grid">
+        <div class="trust-item"><i class="fas fa-shield-check"></i><h4 data-i18n="trust1_t">Verificación Independiente</h4><p data-i18n="trust1_d">5 escribanos certificados verifican cada propiedad antes de publicarse</p></div>
+        <div class="trust-item"><i class="fas fa-file-contract"></i><h4 data-i18n="trust2_t">Títulos Limpios</h4><p data-i18n="trust2_d">Sin impuestos pendientes, sin herencias sin resolver, sin reclamos</p></div>
+        <div class="trust-item"><i class="fas fa-balance-scale"></i><h4 data-i18n="trust3_t">Abogados Locales</h4><p data-i18n="trust3_d">Te recomendamos 5 abogados locales para cerrar el contrato</p></div>
+        <div class="trust-item"><i class="fas fa-language"></i><h4 data-i18n="trust4_t">8 Idiomas</h4><p data-i18n="trust4_d">Plataforma disponible en español, inglés, portugués, francés, italiano, alemán, holandés y ruso</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container footer-content">
+      <div class="footer-brand">
+        <a href="/" class="nav-logo"><i class="fas fa-seedling"></i> CampoLatam</a>
+        <p data-i18n="footer_desc">Conectando vendedores y compradores honestos de campos de Sudamérica</p>
+      </div>
+      <div class="footer-links">
+        <h4 data-i18n="footer_platform">Plataforma</h4>
+        <a href="/search" data-i18n="nav_search">Buscar Campos</a>
+        <a href="/register?role=seller" data-i18n="nav_publish">Publicar Campo</a>
+        <a href="/register?role=notary" data-i18n="footer_notary">Ser Escribano</a>
+      </div>
+      <div class="footer-links">
+        <h4 data-i18n="footer_account">Cuenta</h4>
+        <a href="/login" data-i18n="nav_login">Ingresar</a>
+        <a href="/register" data-i18n="footer_register">Crear cuenta</a>
+      </div>
+    </div>
+    <div class="footer-bottom container">
+      <p>© 2026 CampoLatam. <span data-i18n="footer_rights">Todos los derechos reservados.</span></p>
+    </div>
+  </footer>
+
+  <script src="/js/app.js"></script>
+  <script src="/js/index.js"></script>
+</body>
+</html>

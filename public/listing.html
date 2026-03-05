@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Detalle de Propiedad - Merrali</title>
+  <link rel="stylesheet" href="/css/app.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+</head>
+<body class="inner-page">
+  <nav class="nav nav-solid"><div class="nav-container">
+    <a href="/" class="nav-logo"><i class="fas fa-seedling"></i> Merrali</a>
+    <div class="nav-links" id="navLinks">
+      <a href="/search" data-i18n="nav_search">Buscar</a>
+      <a href="/login" class="btn btn-primary btn-sm" id="navAuthBtn" data-i18n="nav_login">Ingresar</a>
+    </div>
+  </div></nav>
+
+  <div class="listing-detail-page container">
+    <!-- Gallery -->
+    <div class="gallery-section" id="gallerySection">
+      <div class="main-photo" id="mainPhoto"><div class="photo-loading"><i class="fas fa-spinner fa-spin"></i></div></div>
+      <div class="thumbs-row" id="thumbsRow"></div>
+    </div>
+
+    <div class="listing-body">
+      <div class="listing-main">
+        <!-- Header -->
+        <div class="listing-header">
+          <div class="listing-badges" id="listingBadges"></div>
+          <h1 id="listingTitle">Cargando...</h1>
+          <div class="listing-location" id="listingLocation"></div>
+          <div class="listing-price" id="listingPrice"></div>
+        </div>
+
+        <!-- Key specs -->
+        <div class="specs-grid" id="specsGrid"></div>
+
+        <!-- Description -->
+        <div class="listing-section"><h3 data-i18n="desc_title">Descripción</h3><p id="listingDesc"></p></div>
+
+        <!-- Features -->
+        <div class="listing-section"><h3 data-i18n="features_title">Características</h3><div class="features-list" id="featuresList"></div></div>
+
+        <!-- Agriculture -->
+        <div class="listing-section" id="agriSection"><h3 data-i18n="agri_title">Producción Agrícola</h3><div id="agriContent"></div></div>
+
+        <!-- Video -->
+        <div class="listing-section" id="videoSection" style="display:none">
+          <h3 data-i18n="video_title">Video del Campo</h3>
+          <div class="video-embed" id="videoEmbed"></div>
+        </div>
+
+        <!-- Verifications -->
+        <div class="listing-section verif-section">
+          <h3><i class="fas fa-stamp"></i> <span data-i18n="verif_title">Verificaciones</span></h3>
+          <div class="verif-bar" id="verifBar"></div>
+          <div class="verif-list" id="verifList"></div>
+        </div>
+      </div>
+
+      <!-- Sidebar -->
+      <aside class="listing-sidebar">
+        <div class="card seller-card">
+          <h4 data-i18n="seller_title">Vendedor</h4>
+          <div class="seller-info" id="sellerInfo"></div>
+          <hr>
+          <h4 data-i18n="inquiry_title">Consultar esta propiedad</h4>
+          <form id="inquiryForm">
+            <div class="form-group"><input type="text" id="iqName" placeholder="Tu nombre" required></div>
+            <div class="form-group"><input type="email" id="iqEmail" placeholder="Tu email" required></div>
+            <div class="form-group"><textarea id="iqMsg" rows="4" placeholder="Tu mensaje..."></textarea></div>
+            <button type="submit" class="btn btn-primary btn-block" data-i18n="btn_send">Enviar Consulta</button>
+          </form>
+          <div id="inquiryMsg" class="info-msg" style="display:none"></div>
+        </div>
+        <div class="card lawyers-card">
+          <h4><i class="fas fa-balance-scale"></i> <span data-i18n="lawyers_title">Abogados Recomendados</span></h4>
+          <p data-i18n="lawyers_desc">Te sugerimos consultar con abogados locales para verificar el título de propiedad.</p>
+          <button class="btn btn-outline btn-block btn-sm" onclick="alert('Próximamente: lista de abogados certificados por zona')" data-i18n="lawyers_btn">Ver Abogados Locales</button>
+        </div>
+      </aside>
+    </div>
+  </div>
+
+  <script src="/js/app.js"></script>
+  <script src="/js/listing.js"></script>
+</body>
+</html>

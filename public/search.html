@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title data-i18n="search_title">Buscar Campos - Merrali</title>
+  <link rel="stylesheet" href="/css/app.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body class="inner-page">
+  <nav class="nav nav-solid" id="mainNav">
+    <div class="nav-container">
+      <a href="/" class="nav-logo"><i class="fas fa-seedling"></i> Merrali</a>
+      <div class="nav-links" id="navLinks">
+        <a href="/search" class="active" data-i18n="nav_search">Buscar</a>
+        <a href="/register?role=seller" class="btn btn-outline btn-sm" data-i18n="nav_publish">Publicar Campo</a>
+        <a href="/login" class="btn btn-primary btn-sm" id="navAuthBtn" data-i18n="nav_login">Ingresar</a>
+        <div class="lang-selector"><button class="lang-btn" onclick="toggleLangMenu()"><i class="fas fa-globe"></i> <span id="currentLang">ES</span></button>
+          <div class="lang-menu" id="langMenu">
+            <a onclick="setLang('es')">🇦🇷 Español</a><a onclick="setLang('en')">🇺🇸 English</a>
+            <a onclick="setLang('pt')">🇧🇷 Português</a><a onclick="setLang('fr')">🇫🇷 Français</a>
+            <a onclick="setLang('it')">🇮🇹 Italiano</a><a onclick="setLang('de')">🇩🇪 Deutsch</a>
+            <a onclick="setLang('nl')">🇳🇱 Nederlands</a><a onclick="setLang('ru')">🇷🇺 Русский</a>
+          </div>
+        </div>
+      </div>
+      <button class="nav-toggle" onclick="document.getElementById('navLinks').classList.toggle('open')"><i class="fas fa-bars"></i></button>
+    </div>
+  </nav>
+
+  <div class="search-layout">
+    <!-- Filters sidebar -->
+    <aside class="filters-sidebar" id="filtersSidebar">
+      <div class="filters-header">
+        <h3><i class="fas fa-sliders-h"></i> <span data-i18n="filters_title">Filtros</span></h3>
+        <button class="btn-icon" onclick="clearFilters()"><i class="fas fa-times"></i></button>
+      </div>
+      <div class="filter-group">
+        <label data-i18n="filter_country">País</label>
+        <select id="fCountry" onchange="loadProvinces(this.value,'fProvince')">
+          <option value="" data-i18n="all_countries">Todos los países</option>
+        </select>
+      </div>
+      <div class="filter-group">
+        <label data-i18n="filter_province">Provincia / Estado</label>
+        <select id="fProvince"><option value="" data-i18n="all_provinces">Todas</option></select>
+      </div>
+      <div class="filter-group">
+        <label data-i18n="filter_type">Tipo</label>
+        <select id="fType">
+          <option value="">Todos</option>
+          <option value="sale" data-i18n="type_sale">Venta</option>
+          <option value="rent" data-i18n="type_rent">Alquiler</option>
+        </select>
+      </div>
+      <div class="filter-group">
+        <label data-i18n="filter_hectares">Hectáreas</label>
+        <div class="range-inputs">
+          <input type="number" id="fMinHa" placeholder="Mín" min="0">
+          <span>—</span>
+          <input type="number" id="fMaxHa" placeholder="Máx" min="0">
+        </div>
+      </div>
+      <div class="filter-group">
+        <label data-i18n="filter_price">Precio total (USD)</label>
+        <div class="range-inputs">
+          <input type="number" id="fMinPrice" placeholder="Mín" min="0">
+          <span>—</span>
+          <input type="number" id="fMaxPrice" placeholder="Máx" min="0">
+        </div>
+      </div>
+      <div class="filter-group">
+        <label data-i18n="filter_features">Características</label>
+        <label class="check-label"><input type="checkbox" id="fRiver"> <span data-i18n="feat_river">Río</span></label>
+        <label class="check-label"><input type="checkbox" id="fWells"> <span data-i18n="feat_wells">Pozos de agua</span></label>
+        <label class="check-label"><input type="checkbox" id="fFence"> <span data-i18n="feat_fence">Valla perimetral</span></label>
+        <label class="check-label"><input type="checkbox" id="fHouse"> <span data-i18n="feat_house">Casa principal</span></label>
+      </div>
+      <button class="btn btn-primary btn-block" onclick="doSearch()" data-i18n="btn_apply">Aplicar Filtros</button>
+    </aside>
+
+    <!-- Results -->
+    <main class="search-results">
+      <div class="results-header">
+        <div>
+          <input type="text" id="searchQuery" class="search-input" placeholder="Buscar por nombre, ciudad..." onkeydown="if(event.key==='Enter')doSearch()">
+        </div>
+        <div class="results-meta">
+          <span id="resultsCount" data-i18n="results_count">Cargando...</span>
+          <select id="sortBy" onchange="doSearch()">
+            <option value="newest" data-i18n="sort_newest">Más recientes</option>
+            <option value="price_asc" data-i18n="sort_price_asc">Menor precio</option>
+            <option value="price_desc" data-i18n="sort_price_desc">Mayor precio</option>
+            <option value="ha_asc" data-i18n="sort_ha">Más hectáreas</option>
+          </select>
+        </div>
+      </div>
+      <div class="listings-grid" id="resultsGrid">
+        <div class="loading-spinner"><i class="fas fa-spinner fa-spin"></i></div>
+      </div>
+      <div class="pagination" id="pagination"></div>
+    </main>
+  </div>
+
+  <script src="/js/app.js"></script>
+  <script src="/js/search.js"></script>
+</body>
+</html>

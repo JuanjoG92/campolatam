@@ -1,0 +1,16 @@
+# data/
+*.db
+
+# uploads
+public/uploads/*
+!public/uploads/.gitkeep
+
+# env
+.env
+
+# deps
+node_modules/
+
+# logs
+*.log
+npm-debug.log*

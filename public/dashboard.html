@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mi Panel - Merrali</title>
+  <link rel="stylesheet" href="/css/app.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body class="inner-page">
+  <nav class="nav nav-solid"><div class="nav-container">
+    <a href="/" class="nav-logo"><i class="fas fa-seedling"></i> Merrali</a>
+    <div class="nav-links">
+      <a href="/search" data-i18n="nav_search">Buscar</a>
+      <span id="navUser" style="font-weight:600;color:var(--green)"></span>
+      <a href="#" class="btn btn-outline btn-sm" onclick="logout()" data-i18n="nav_logout">Salir</a>
+    </div>
+  </div></nav>
+
+  <div class="dashboard-layout">
+    <nav class="dash-sidebar">
+      <button class="dash-tab active" data-tab="overview" onclick="switchTab('overview',this)"><i class="fas fa-home"></i> <span data-i18n="tab_overview">Resumen</span></button>
+      <button class="dash-tab" id="tabMyListings" data-tab="my-listings" onclick="switchTab('my-listings',this)"><i class="fas fa-list"></i> <span data-i18n="tab_listings">Mis Campos</span></button>
+      <button class="dash-tab" id="tabVerify" data-tab="verify" onclick="switchTab('verify',this)" style="display:none"><i class="fas fa-stamp"></i> <span data-i18n="tab_verify">Verificar</span></button>
+      <button class="dash-tab" id="tabNewListing" onclick="window.location='/new-listing'" style="display:none"><i class="fas fa-plus"></i> <span data-i18n="tab_new">Nuevo Campo</span></button>
+      <button class="dash-tab" data-tab="profile" onclick="switchTab('profile',this)"><i class="fas fa-user"></i> <span data-i18n="tab_profile">Mi Perfil</span></button>
+    </nav>
+
+    <main class="dash-content">
+      <!-- Overview -->
+      <div class="dash-panel active" id="panel-overview">
+        <h2 data-i18n="tab_overview">Resumen</h2>
+        <div class="stats-row" id="dashStats"></div>
+        <div class="welcome-msg" id="welcomeMsg"></div>
+      </div>
+
+      <!-- My Listings (seller) -->
+      <div class="dash-panel" id="panel-my-listings">
+        <div class="panel-header">
+          <h2 data-i18n="tab_listings">Mis Campos</h2>
+          <a href="/new-listing" class="btn btn-primary btn-sm"><i class="fas fa-plus"></i> <span data-i18n="tab_new">Nuevo Campo</span></a>
+        </div>
+        <div id="myListingsGrid" class="listings-grid"></div>
+      </div>
+
+      <!-- Verify (notary) -->
+      <div class="dash-panel" id="panel-verify">
+        <h2 data-i18n="tab_verify">Verificar Propiedades</h2>
+        <p data-i18n="verify_desc">Revisá y verificá las propiedades de tu zona. Se necesitan 5 verificaciones independientes para activar un listado.</p>
+        <div id="pendingGrid" class="listings-grid"></div>
+      </div>
+
+      <!-- Profile -->
+      <div class="dash-panel" id="panel-profile">
+        <h2 data-i18n="tab_profile">Mi Perfil</h2>
+        <div class="card" style="max-width:500px">
+          <div class="profile-info" id="profileInfo"></div>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <!-- Modal: Verify -->
+  <div class="modal" id="verifyModal" style="display:none">
+    <div class="modal-card">
+      <div class="modal-header"><h3 data-i18n="modal_verify">Verificar Propiedad</h3><button onclick="closeModal('verifyModal')"><i class="fas fa-times"></i></button></div>
+      <div id="verifyModalBody"></div>
+      <form id="verifyForm">
+        <input type="hidden" id="verifyListingId">
+        <div class="form-group"><label data-i18n="verify_status">Resultado</label>
+          <select id="verifyStatus">
+            <option value="verified" data-i18n="vstatus_verified">✅ Verificado - Todo en orden</option>
+            <option value="pending" data-i18n="vstatus_pending">⚠️ Pendiente - Necesita más información</option>
+            <option value="rejected" data-i18n="vstatus_rejected">❌ Rechazado - Tiene problemas legales</option>
+          </select>
+        </div>
+        <div class="form-group"><label data-i18n="verify_notes">Notas de verificación</label><textarea id="verifyNotes" rows="4" placeholder="Detalles de la verificación..."></textarea></div>
+        <button type="submit" class="btn btn-primary btn-block" data-i18n="btn_submit_verify">Enviar Verificación</button>
+      </form>
+    </div>
+  </div>
+
+  <script src="/js/app.js"></script><script src="/js/dashboard.js"></script>
+</body>
+</html>

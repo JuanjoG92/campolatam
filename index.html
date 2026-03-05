@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#0f172a">
+  <title>Merrali - Importación y Exportación | Paraguay, Argentina, Brasil</title>
+  <meta name="description" content="Merrali: importación y exportación profesional entre Paraguay, Argentina, Brasil y Latinoamérica. Logística integral, despacho aduanero y asesoramiento.">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/app.css?v=1">
+</head>
+<body>
+
+  <!-- Nav -->
+  <nav class="nav">
+    <div class="nav-brand">
+      <div class="logo-icon"><i class="fas fa-globe-americas"></i></div>
+      <span>Merr<span class="highlight">ali</span></span>
+    </div>
+    <div class="nav-links">
+      <a href="#services" data-i18n="nav.services">Servicios</a>
+      <a href="#products" data-i18n="nav.products">Productos</a>
+      <a href="#countries" data-i18n="nav.countries">Países</a>
+      <a href="#how" data-i18n="nav.how">Cómo Funciona</a>
+      <a href="#contact" data-i18n="nav.contact">Contacto</a>
+    </div>
+    <div class="nav-actions">
+      <button onclick="cycleLang()" style="background:none;border:1px solid rgba(255,255,255,0.15);color:var(--gray);padding:0.35rem 0.7rem;border-radius:6px;cursor:pointer;font-size:0.8rem;font-weight:600;">
+        <i class="fas fa-globe"></i> <span id="langCurrent">ES</span>
+      </button>
+      <button id="themeBtn" onclick="toggleTheme()" style="background:none;border:none;color:var(--gray);cursor:pointer;font-size:1.1rem;">
+        <i class="fas fa-sun"></i>
+      </button>
+      <a href="https://wa.me/5493794802108?text=Hola%20Merrali%2C%20quiero%20cotizar" target="_blank" class="nav-cta" data-i18n="nav.cta">Cotizar Ahora</a>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="hero-content">
+      <div class="hero-badge"><i class="fas fa-ship"></i> <span data-i18n="hero.badge">Importación y Exportación Profesional</span></div>
+      <h1 data-i18n="hero.title">Conectamos <span class="gradient-text">mercados</span> en toda Latinoamérica</h1>
+      <p data-i18n="hero.desc">Importación y exportación de productos entre Paraguay, Argentina, Brasil y más países. Logística integral, despacho aduanero y asesoramiento comercial.</p>
+      <div class="hero-btns">
+        <a href="https://wa.me/5493794802108?text=Hola%20Merrali%2C%20quiero%20cotizar" target="_blank" class="btn btn-primary"><i class="fas fa-paper-plane"></i> <span data-i18n="hero.cta1">Solicitar Cotización</span></a>
+        <a href="#products" class="btn btn-secondary"><i class="fas fa-box-open"></i> <span data-i18n="hero.cta2">Ver Productos</span></a>
+      </div>
+      <div class="hero-stats">
+        <div class="hero-stat"><div class="num">500+</div><div class="label" data-i18n="hero.stat1">Operaciones</div></div>
+        <div class="hero-stat"><div class="num">6</div><div class="label" data-i18n="hero.stat2">Países</div></div>
+        <div class="hero-stat"><div class="num">120+</div><div class="label" data-i18n="hero.stat3">Clientes Activos</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Services -->
+  <section id="services" style="text-align:center;">
+    <div class="section-badge"><i class="fas fa-handshake"></i> <span data-i18n="serv.badge">Servicios</span></div>
+    <h2 class="section-title" data-i18n="serv.title">Soluciones completas de comercio exterior</h2>
+    <div class="services-grid">
+      <div class="service-card">
+        <div class="service-icon import"><i class="fas fa-arrow-down"></i></div>
+        <h3 data-i18n="serv.1t">Importación</h3>
+        <p data-i18n="serv.1d">Traemos tus productos desde cualquier origen. Gestión aduanera, transporte y entrega en tu depósito.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-icon export"><i class="fas fa-arrow-up"></i></div>
+        <h3 data-i18n="serv.2t">Exportación</h3>
+        <p data-i18n="serv.2d">Llevamos tus productos al mundo. Documentación, logística y acompañamiento en todo el proceso.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-icon logistics"><i class="fas fa-truck"></i></div>
+        <h3 data-i18n="serv.3t">Logística Integral</h3>
+        <p data-i18n="serv.3d">Transporte terrestre, marítimo y aéreo. Almacenamiento y distribución en destino.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-icon consulting"><i class="fas fa-chart-line"></i></div>
+        <h3 data-i18n="serv.4t">Asesoramiento</h3>
+        <p data-i18n="serv.4d">Consultoría en comercio exterior, regulaciones, aranceles y oportunidades de mercado.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Products -->
+  <section id="products" style="text-align:center;">
+    <div class="section-badge"><i class="fas fa-box-open"></i> <span data-i18n="prod.badge">Productos</span></div>
+    <h2 class="section-title" data-i18n="prod.title">Catálogo de productos disponibles</h2>
+    <div class="products-grid">
+      <div class="product-card">
+        <img src="https://images.pexels.com/photos/2733918/pexels-photo-2733918.jpeg?auto=compress&w=500&h=300&fit=crop" alt="Electrónica" class="product-img">
+        <div class="product-info">
+          <h4>Electrónica y Tecnología</h4>
+          <p>Celulares, tablets, accesorios, audio y componentes electrónicos.</p>
+          <div class="product-tags"><span class="product-tag">Importación</span><span class="product-tag export">Exportación</span></div>
+        </div>
+      </div>
+      <div class="product-card">
+        <img src="https://images.pexels.com/photos/3735218/pexels-photo-3735218.jpeg?auto=compress&w=500&h=300&fit=crop" alt="Textiles" class="product-img">
+        <div class="product-info">
+          <h4>Textiles y Confecciones</h4>
+          <p>Ropa, telas, insumos textiles, calzado y accesorios de moda.</p>
+          <div class="product-tags"><span class="product-tag">Importación</span><span class="product-tag export">Exportación</span></div>
+        </div>
+      </div>
+      <div class="product-card">
+        <img src="https://images.pexels.com/photos/2252584/pexels-photo-2252584.jpeg?auto=compress&w=500&h=300&fit=crop" alt="Alimentos" class="product-img">
+        <div class="product-info">
+          <h4>Alimentos y Bebidas</h4>
+          <p>Productos agrícolas, yerba mate, soja, carnes, bebidas y snacks.</p>
+          <div class="product-tags"><span class="product-tag export">Exportación</span></div>
+        </div>
+      </div>
+      <div class="product-card">
+        <img src="https://images.pexels.com/photos/1267338/pexels-photo-1267338.jpeg?auto=compress&w=500&h=300&fit=crop" alt="Maquinaria" class="product-img">
+        <div class="product-info">
+          <h4>Maquinaria Industrial</h4>
+          <p>Maquinaria agrícola, herramientas, equipos industriales y repuestos.</p>
+          <div class="product-tags"><span class="product-tag">Importación</span></div>
+        </div>
+      </div>
+      <div class="product-card">
+        <img src="https://images.pexels.com/photos/4246120/pexels-photo-4246120.jpeg?auto=compress&w=500&h=300&fit=crop" alt="Cosméticos" class="product-img">
+        <div class="product-info">
+          <h4>Cosméticos y Salud</h4>
+          <p>Productos de belleza, cuidado personal, suplementos y farmacéuticos.</p>
+          <div class="product-tags"><span class="product-tag">Importación</span><span class="product-tag export">Exportación</span></div>
+        </div>
+      </div>
+      <div class="product-card">
+        <img src="https://images.pexels.com/photos/1797428/pexels-photo-1797428.jpeg?auto=compress&w=500&h=300&fit=crop" alt="Construcción" class="product-img">
+        <div class="product-info">
+          <h4>Materiales de Construcción</h4>
+          <p>Cemento, hierro, cerámicas, pinturas y materiales para obra.</p>
+          <div class="product-tags"><span class="product-tag">Importación</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Countries -->
+  <section id="countries" style="text-align:center;">
+    <div class="section-badge"><i class="fas fa-map-marked-alt"></i> <span data-i18n="countries.badge">Cobertura</span></div>
+    <h2 class="section-title" data-i18n="countries.title">Países donde operamos</h2>
+    <div class="countries-grid">
+      <div class="country-card"><div class="country-flag">🇵🇾</div><div class="country-name">Paraguay</div><div class="country-desc" data-i18n="py.desc">Base de operaciones principal</div></div>
+      <div class="country-card"><div class="country-flag">🇦🇷</div><div class="country-name">Argentina</div><div class="country-desc" data-i18n="ar.desc">Importación y exportación activa</div></div>
+      <div class="country-card"><div class="country-flag">🇧🇷</div><div class="country-name">Brasil</div><div class="country-desc" data-i18n="br.desc">Mayor socio comercial</div></div>
+      <div class="country-card"><div class="country-flag">🇺🇾</div><div class="country-name">Uruguay</div><div class="country-desc" data-i18n="uy.desc">Operaciones en crecimiento</div></div>
+      <div class="country-card"><div class="country-flag">🇧🇴</div><div class="country-name">Bolivia</div><div class="country-desc" data-i18n="bo.desc">Ruta comercial andina</div></div>
+      <div class="country-card"><div class="country-flag">🇨🇱</div><div class="country-name">Chile</div><div class="country-desc" data-i18n="cl.desc">Conexión Pacífico</div></div>
+    </div>
+  </section>
+
+  <!-- How it works -->
+  <section id="how" style="text-align:center;">
+    <div class="section-badge"><i class="fas fa-list-ol"></i> <span data-i18n="how.badge">Proceso</span></div>
+    <h2 class="section-title" data-i18n="how.title">¿Cómo funciona?</h2>
+    <div class="steps">
+      <div class="step"><div class="step-num">1</div><h3 data-i18n="how.1t">Consultá</h3><p data-i18n="how.1d">Contanos qué producto querés importar o exportar y a qué país.</p></div>
+      <div class="step"><div class="step-num">2</div><h3 data-i18n="how.2t">Cotizamos</h3><p data-i18n="how.2d">Analizamos costos, aranceles, transporte y te enviamos una cotización detallada.</p></div>
+      <div class="step"><div class="step-num">3</div><h3 data-i18n="how.3t">Gestionamos</h3><p data-i18n="how.3d">Nos encargamos de toda la logística, documentación y despacho aduanero.</p></div>
+      <div class="step"><div class="step-num">4</div><h3 data-i18n="how.4t">Entregamos</h3><p data-i18n="how.4d">Recibís tu mercadería en destino. Seguimiento en tiempo real.</p></div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section>
+    <div class="cta-section">
+      <h2 data-i18n="cta.title">¿Listo para expandir tu negocio?</h2>
+      <p data-i18n="cta.desc">Contactanos y te asesoramos sin compromiso sobre tu próxima operación de importación o exportación.</p>
+      <a href="https://wa.me/5493794802108?text=Hola%20Merrali%2C%20quiero%20información" target="_blank" class="btn btn-primary"><i class="fab fa-whatsapp"></i> <span data-i18n="cta.btn">Contactar Ahora</span></a>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section id="contact" style="text-align:center;">
+    <div class="section-badge"><i class="fas fa-envelope"></i> <span data-i18n="contact.badge">Contacto</span></div>
+    <h2 class="section-title" data-i18n="contact.title">Hablemos de tu próximo negocio</h2>
+    <div class="contact-grid">
+      <a href="https://wa.me/5493794802108" target="_blank" class="contact-card">
+        <i class="fab fa-whatsapp" style="color:#25D366;"></i>
+        <div><h4 data-i18n="contact.wa">WhatsApp</h4><p data-i18n="contact.waDesc">Escribinos al WhatsApp</p></div>
+      </a>
+      <a href="mailto:info@merrali.com" class="contact-card">
+        <i class="fas fa-envelope"></i>
+        <div><h4 data-i18n="contact.email">Email</h4><p data-i18n="contact.emailDesc">info@merrali.com</p></div>
+      </a>
+      <div class="contact-card">
+        <i class="fas fa-map-marker-alt"></i>
+        <div><h4 data-i18n="contact.loc">Ubicación</h4><p data-i18n="contact.locDesc">Paraguay - Argentina - Brasil</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <p data-i18n="footer.copy">© 2025 Merrali. Todos los derechos reservados.</p>
+  </footer>
+
+  <script src="js/app.js?v=1"></script>
+</body>
+</html>

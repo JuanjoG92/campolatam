@@ -1,0 +1,52 @@
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">17.0</VisualStudioVersion>
+    <ProjectGuid>c2d3e4f5-a6b7-8901-cdef-012345678902</ProjectGuid>
+    <ProjectHome>.</ProjectHome>
+    <StartupFile>server.js</StartupFile>
+    <WorkingDirectory>.</WorkingDirectory>
+    <OutputPath>.</OutputPath>
+    <ProjectTypeGuids>{3AF33F2E-1136-4D97-BBB7-1795711AC8B8};{9092AA53-FB77-4645-B42D-1CCCA6BD08BD}</ProjectTypeGuids>
+    <EnableTypeScript>false</EnableTypeScript>
+    <NodejsPort>3802</NodejsPort>
+    <LaunchUrl>http://localhost:3802</LaunchUrl>
+    <SaveNodeJsSettingsInProjectFile>True</SaveNodeJsSettingsInProjectFile>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Debug' "><DebugSymbols>true</DebugSymbols></PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Release' "><DebugSymbols>true</DebugSymbols></PropertyGroup>
+  <ItemGroup>
+    <Content Include="package.json" />
+    <Content Include=".env.example" />
+    <Content Include=".gitignore" />
+    <Compile Include="server.js" />
+    <Compile Include="src\middleware\auth.js" />
+    <Compile Include="src\models\db.js" />
+    <Compile Include="src\routes\auth.js" />
+    <Compile Include="src\routes\listings.js" />
+    <Compile Include="src\routes\search.js" />
+    <Compile Include="src\routes\notaries.js" />
+    <Compile Include="src\routes\webhook.js" />
+    <Content Include="public\index.html" />
+    <Content Include="public\login.html" />
+    <Content Include="public\register.html" />
+    <Content Include="public\dashboard.html" />
+    <Content Include="public\listing.html" />
+    <Content Include="public\new-listing.html" />
+    <Content Include="public\search.html" />
+    <Content Include="public\css\app.css" />
+    <Content Include="public\js\app.js" />
+    <Content Include="public\js\auth.js" />
+    <Content Include="public\js\index.js" />
+    <Content Include="public\js\listing.js" />
+    <Content Include="public\js\search.js" />
+    <Content Include="public\js\dashboard.js" />
+    <Content Include="public\js\new-listing.js" />
+    <Content Include="deploy\nginx.conf" />
+    <Content Include=".github\copilot-instructions.md" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="src\" /><Folder Include="src\middleware\" /><Folder Include="src\models\" />
+    <Folder Include="src\routes\" /><Folder Include="public\" /><Folder Include="public\css\" />
+    <Folder Include="public\js\" /><Folder Include="public\uploads\" /><Folder Include="deploy\" /><Folder Include="data\" />
+  </ItemGroup>
+</Project>
